@@ -8,6 +8,8 @@
 
 #import "ResultsLIstViewController.h"
 #import "YelpClient.h"
+#import "YelpListingCell.h"
+#import "YelpListing.h"
 
 NSString * const kYelpConsumerKey = @"vxKwwcR_NMQ7WaEiQBK_CA";
 NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
@@ -16,6 +18,8 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 @interface ResultsLIstViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSArray *yelpListings;
 @property (nonatomic, strong) YelpClient *client;
 
 @end
@@ -25,15 +29,9 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
-        self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+    if (self)
+    {
         
-        [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
-            NSLog(@"response: %@", response);
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            NSLog(@"error: %@", [error description]);
-        }];
     }
     return self;
 }
@@ -41,7 +39,22 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    UINib *yelpNib = [UINib nibWithNibName:@"YelpListingCell" bundle:nil];
+    [self.tableView registerNib:yelpNib forCellReuseIdentifier:@"YelpListingCell"];
+    self.tableView.rowHeight = 120;
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate   = self;
+
+    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+    
+    [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
+        //NSLog(@"response: %@", response);
+        self.yelpListings = [YelpListing yelpListingsArray:response[@"businesses"]];
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", [error description]);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,21 +67,19 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
+    return self.yelpListings.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    YelpListingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YelpListingCell" forIndexPath:indexPath];
     
-}
-
-#pragma mark - Table view methods -- Delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+    YelpListing *listing = self.yelpListings[indexPath.row];
+    listing.index        = [NSString stringWithFormat: @"%i", indexPath.row];
+    cell.listing         = listing;
     
+    return cell;
+
 }
-
-
 
 @end

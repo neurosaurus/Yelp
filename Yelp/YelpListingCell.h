@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YelpListing.h"
 
 @interface YelpListingCell : UITableViewCell
 
-
+@property (nonatomic, strong) YelpListing *listing;
 
 @end
