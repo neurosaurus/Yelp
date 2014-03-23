@@ -23,6 +23,9 @@
 		EBA15AB718DE2DAB00DC1449 /* YelpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA15AB618DE2DAB00DC1449 /* YelpClient.m */; };
 		EBA15ABB18DE2FD200DC1449 /* ResultsLIstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA15AB918DE2FD200DC1449 /* ResultsLIstViewController.m */; };
 		EBA15ABC18DE2FD200DC1449 /* ResultsLIstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA15ABA18DE2FD200DC1449 /* ResultsLIstViewController.xib */; };
+		EBA15ACB18DE478C00DC1449 /* YelpListing.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA15ACA18DE478C00DC1449 /* YelpListing.m */; };
+		EBA15ACF18DE47C500DC1449 /* YelpListingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA15ACD18DE47C500DC1449 /* YelpListingCell.m */; };
+		EBA15AD018DE47C500DC1449 /* YelpListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA15ACE18DE47C500DC1449 /* YelpListingCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,11 @@
 		EBA15AB818DE2FD200DC1449 /* ResultsLIstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsLIstViewController.h; sourceTree = "<group>"; };
 		EBA15AB918DE2FD200DC1449 /* ResultsLIstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsLIstViewController.m; sourceTree = "<group>"; };
 		EBA15ABA18DE2FD200DC1449 /* ResultsLIstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsLIstViewController.xib; sourceTree = "<group>"; };
+		EBA15AC918DE478C00DC1449 /* YelpListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpListing.h; sourceTree = SOURCE_ROOT; };
+		EBA15ACA18DE478C00DC1449 /* YelpListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListing.m; sourceTree = SOURCE_ROOT; };
+		EBA15ACC18DE47C500DC1449 /* YelpListingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpListingCell.h; sourceTree = "<group>"; };
+		EBA15ACD18DE47C500DC1449 /* YelpListingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListingCell.m; sourceTree = "<group>"; };
+		EBA15ACE18DE47C500DC1449 /* YelpListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YelpListingCell.xib; sourceTree = "<group>"; };
 		FC7F5844EA73441297D43447 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,7 +132,7 @@
 				EBA15A9218DE2A6800DC1449 /* AppDelegate.h */,
 				EBA15A9318DE2A6800DC1449 /* AppDelegate.m */,
 				EBA15ABD18DE37FE00DC1449 /* API */,
-				EBA15AB418DE2BD000DC1449 /* Controllers */,
+				EBA15AB418DE2BD000DC1449 /* View Controllers */,
 				EBA15AB318DE2BC700DC1449 /* Views */,
 				EBA15AB218DE2BC000DC1449 /* Models */,
 				EBA15A9518DE2A6800DC1449 /* Images.xcassets */,
@@ -165,6 +173,8 @@
 		EBA15AB218DE2BC000DC1449 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EBA15AC918DE478C00DC1449 /* YelpListing.h */,
+				EBA15ACA18DE478C00DC1449 /* YelpListing.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -172,18 +182,21 @@
 		EBA15AB318DE2BC700DC1449 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EBA15ACC18DE47C500DC1449 /* YelpListingCell.h */,
+				EBA15ACD18DE47C500DC1449 /* YelpListingCell.m */,
+				EBA15ACE18DE47C500DC1449 /* YelpListingCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		EBA15AB418DE2BD000DC1449 /* Controllers */ = {
+		EBA15AB418DE2BD000DC1449 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				EBA15AB818DE2FD200DC1449 /* ResultsLIstViewController.h */,
 				EBA15AB918DE2FD200DC1449 /* ResultsLIstViewController.m */,
 				EBA15ABA18DE2FD200DC1449 /* ResultsLIstViewController.xib */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		EBA15ABD18DE37FE00DC1449 /* API */ = {
@@ -272,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBA15AD018DE47C500DC1449 /* YelpListingCell.xib in Resources */,
 				EBA15A8E18DE2A6800DC1449 /* InfoPlist.strings in Resources */,
 				EBA15ABC18DE2FD200DC1449 /* ResultsLIstViewController.xib in Resources */,
 				EBA15A9618DE2A6800DC1449 /* Images.xcassets in Resources */,
@@ -326,6 +340,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBA15ACF18DE47C500DC1449 /* YelpListingCell.m in Sources */,
+				EBA15ACB18DE478C00DC1449 /* YelpListing.m in Sources */,
 				EBA15A9418DE2A6800DC1449 /* AppDelegate.m in Sources */,
 				EBA15A9018DE2A6800DC1449 /* main.m in Sources */,
 				EBA15AB718DE2DAB00DC1449 /* YelpClient.m in Sources */,
