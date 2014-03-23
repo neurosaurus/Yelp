@@ -46,14 +46,18 @@
     [self.ratingsImage          setImageWithURL: [NSURL URLWithString:yelpListing.ratingImageUrl]];
 }
 
-- (CGFloat)customHeightForCell
-{
-    //resturanttitle getsize that fits for your text, then get height
-    
-    ///add all heights
-    
-    
-    //return total height for cell;
-}
+//- (CGFloat)customHeightForCell
+//{
+//    self.restaurantTitle.text = yelpListing.name
+// 
+//    //UIFont *fontText = [UIFont systemFontOfSize:15.0];
+//    CGRect rect = [text boundingRectWithSize:CGSizeMake(165, CGFLOAT_MAX)
+//                                     options:NSStringDrawingUsesLineFragmentOrigin
+//                                  attributes:@{NSFontAttributeName:fontText}
+//                                     context:nil];
+//    CGFloat heightOffset = 90;
+//    return rect.size.height + heightOffset;
+//    
+//}
 
 @end

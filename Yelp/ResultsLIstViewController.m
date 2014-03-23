@@ -56,6 +56,11 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     }];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -64,11 +69,13 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 #pragma mark - Table view methods -- Datasource
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.yelpListings.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     YelpListingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YelpListingCell" forIndexPath:indexPath];
     
     YelpListing *listing = self.yelpListings[indexPath.row];
@@ -84,9 +91,10 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //get instance of cell
-    YelpListingCell *cell = [tableview cellForRowAtIndexPath:indexPath];
-    
-    // Prototype knows how to calculate its height for the given data
-    return [cell customHeightForCell];
+//    YelpListingCell *cell = [tableview cellForRowAtIndexPath:indexPath];
+//    
+//    // Prototype knows how to calculate its height for the given data
+//    return [cell customHeightForCell];
+    return 150;
 }
 @end
