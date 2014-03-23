@@ -33,17 +33,27 @@
     [super setSelected:selected animated:animated];
 
 }
-- (void)setYelpListing:(YelpListing *)listing
+- (void)setYelpListing:(YelpListing *)yelpListing
 {
-    _listing = listing;
+    _yelpListing = yelpListing;
     
-    self.restaurantTitle.text   = listing.title;
-    self.addressLabel.text      = [NSString stringWithFormat:@"%@, %@", listing.address, listing.neighborhood];
-    self.reviewCount.text       = [NSString stringWithFormat: @"%@", listing.reviewCount];
-    self.indexCount.text        = listing.index;
+    self.restaurantTitle.text   = [NSString stringWithFormat:@"%@, %@", yelpListing.title];
+    self.addressLabel.text      = [NSString stringWithFormat:@"%@, %@", yelpListing.address, yelpListing.neighborhood];
+    self.reviewCount.text       = [NSString stringWithFormat: @"%@", yelpListing.reviewCount];
+    self.indexCount.text        = yelpListing.index;
     
-    [self.restaurantImage       setImageWithURL: [NSURL URLWithString:listing.listingImageUrl]];
-    [self.ratingsImage          setImageWithURL: [NSURL URLWithString:listing.ratingImageUrl]];
+    [self.restaurantImage       setImageWithURL: [NSURL URLWithString:yelpListing.listingImageUrl]];
+    [self.ratingsImage          setImageWithURL: [NSURL URLWithString:yelpListing.ratingImageUrl]];
+}
+
+- (CGFloat)customHeightForCell
+{
+    //resturanttitle getsize that fits for your text, then get height
+    
+    ///add all heights
+    
+    
+    //return total height for cell;
 }
 
 @end

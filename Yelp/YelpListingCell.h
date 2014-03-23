@@ -11,6 +11,10 @@
 
 @interface YelpListingCell : UITableViewCell
 
-@property (nonatomic, strong) YelpListing *listing;
+@property (nonatomic, strong) YelpListing *yelpListing;
+
+- (CGFloat) customHeightForCell;
 
 @end
+
+

@@ -41,7 +41,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     [super viewDidLoad];
     UINib *yelpNib = [UINib nibWithNibName:@"YelpListingCell" bundle:nil];
     [self.tableView registerNib:yelpNib forCellReuseIdentifier:@"YelpListingCell"];
-    self.tableView.rowHeight = 120;
+    self.tableView.rowHeight = 130;
     
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
@@ -49,7 +49,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
     
     [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
-        //NSLog(@"response: %@", response);
         self.yelpListings = [YelpListing yelpListingsArray:response[@"businesses"]];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -65,21 +64,29 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 #pragma mark - Table view methods -- Datasource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.yelpListings.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YelpListingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YelpListingCell" forIndexPath:indexPath];
     
     YelpListing *listing = self.yelpListings[indexPath.row];
-    listing.index        = [NSString stringWithFormat: @"%i", indexPath.row];
-    cell.listing         = listing;
+    
+    // Used to set indexLabel to number listings on custom cell
+    listing.index    = [NSString stringWithFormat: @"%i", indexPath.row];
+    
+    cell.yelpListing = listing;
     
     return cell;
-
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //get instance of cell
+    YelpListingCell *cell = [tableview cellForRowAtIndexPath:indexPath];
+    
+    // Prototype knows how to calculate its height for the given data
+    return [cell customHeightForCell];
+}
 @end
