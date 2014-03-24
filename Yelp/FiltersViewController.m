@@ -114,16 +114,17 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return @"Price";
-    } else if (section == 1) {
-        return @"Most Popular";
-    } else if (section == 2){
-        return @"Distance";
-    } else if (section == 3){
-        return @"Sort By";
-    } else {
-        return @"General Features";
+    switch (section) {
+        case 0:
+            return @"Price";
+        case 1:
+            return @"Most Popular";
+        case 2:
+            return @"Distance";
+        case 3:
+            return @"Sort By";
+        default:
+            return @"General Features";
     }
 }
 
@@ -154,7 +155,6 @@
         return ((NSArray *)self.categories[section][@"list"]).count;
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
