@@ -23,7 +23,7 @@
     if (self) {
         self.title = @"Filters";
         
-        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(onSearchButton:)];
+        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButton:)];
         self.navigationItem.rightBarButtonItem = searchButton;
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel:)];
@@ -32,13 +32,25 @@
 }
 
 - (void)viewDidLoad
-{
+{ 
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     UINib *filterViewCellNib = [UINib nibWithNibName:@"FilterViewCell" bundle:nil];
     [self.tableView registerNib:filterViewCellNib forCellReuseIdentifier:@"FilterViewCell"];
+}
+
+#pragma mark - Buttons
+- (void)onCancel:(UIBarButtonItem *)button
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)onSearchButton:(UIBarButtonItem *)button
+{
+    NSLog(@"Search");
+    //[self.delegate filtersViewController:self didSetFilters:_filters];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +69,7 @@
 
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//
+//    return 0;
 //}
 //
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

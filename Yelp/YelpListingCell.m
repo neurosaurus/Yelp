@@ -48,9 +48,10 @@
 
 //- (CGFloat)customHeightForCell
 //{
-//    self.restaurantTitle.text = yelpListing.name
+//    //self.restaurantTitle.text = yelpListing.title;
 // 
-//    //UIFont *fontText = [UIFont systemFontOfSize:15.0];
+//    UIFont *fontText = [UIFont systemFontOfSize:15.0];
+//    //NSString *text = listing.title;
 //    CGRect rect = [text boundingRectWithSize:CGSizeMake(165, CGFLOAT_MAX)
 //                                     options:NSStringDrawingUsesLineFragmentOrigin
 //                                  attributes:@{NSFontAttributeName:fontText}

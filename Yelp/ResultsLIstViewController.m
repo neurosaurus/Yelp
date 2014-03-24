@@ -17,13 +17,12 @@ NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
 NSString * const kYelpToken = @"uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV";
 NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
-@interface ResultsLIstViewController () <UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ResultsLIstViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-
 @property (nonatomic, strong) NSArray *yelpListings;
 @property (nonatomic, strong) YelpClient *client;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 @end
 
@@ -44,26 +43,29 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     [super viewDidLoad];
     UINib *yelpNib = [UINib nibWithNibName:@"YelpListingCell" bundle:nil];
     [self.tableView registerNib:yelpNib forCellReuseIdentifier:@"YelpListingCell"];
-    self.tableView.rowHeight = 130;
+//    self.tableView.rowHeight = 130;
     
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     
-    UINavigationItem *navItem = self.navigationItem;
-    UIBarButtonItem *bbi =[[UIBarButtonItem alloc] initWithTitle:@"Filter"
-                                                           style:UIBarButtonItemStylePlain
-                                                          target:self
-                                                          action:@selector(onFilter)];
-
-    navItem.leftBarButtonItem = bbi;
+    UINavigationBar *header = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,320,45)];
+    UINavigationItem *buttonStore = [[UINavigationItem alloc]initWithTitle:@"Yelp"];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(40.0, 0.0, 280.0, 44.0)];
-    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UIView *searchBarView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, 310.0, 44.0)];
-    searchBarView.autoresizingMask = 0;
-    searchBar.delegate = self;
-    [searchBarView addSubview:searchBar];
-    self.navigationItem.titleView = searchBarView;
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(onFilter:)];
+    
+    [buttonStore setLeftBarButtonItem:filterButton];
+    
+    NSArray *barItemsArray = [[NSArray alloc]initWithObjects:buttonStore,nil];
+    [header setItems:barItemsArray];
+    [self.tableView setTableHeaderView:header];
+    
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    
+    header.topItem.titleView = self.searchBar;
 
     self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
     
@@ -109,17 +111,21 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //get instance of cell
-//    YelpListingCell *cell = [tableview cellForRowAtIndexPath:indexPath];
-//    
-//    // Prototype knows how to calculate its height for the given data
-//    return [cell customHeightForCell];
-    return 150;
+    YelpListing *listing = self.yelpListings[indexPath.row];
+    
+    NSString *text = listing.title;
+    UIFont *fontText = [UIFont boldSystemFontOfSize:17.0];
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(165, CGFLOAT_MAX)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName:fontText}
+                                     context:nil];
+    CGFloat heightOffset = 90;
+    return rect.size.height + heightOffset;
 }
 
-#pragma mark - Navigation
+#pragma mark - Navigation Filter Bar Button
 
-- (void)onFilter
+- (void)onFilter:(UIBarButtonItem *)button
 {
     [self.navigationController pushViewController:[[FiltersViewController alloc] init] animated:YES];
 }

@@ -13,46 +13,68 @@
                 <rect key="frame" x="0.0" y="0.0" width="486" height="123"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AqL-A0-nXW">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AqL-A0-nXW">
                         <rect key="frame" x="0.0" y="0.0" width="163" height="123"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurant Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-7G-v5a">
-                        <rect key="frame" x="221" y="14" width="143" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Restaurant Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-7G-v5a">
+                        <rect key="frame" x="226" y="14" width="143" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address, Neighborhood" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sp-Ti-IhO">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Address, Neighborhood" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sp-Ti-IhO">
                         <rect key="frame" x="171" y="74" width="198" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Food Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghQ-FG-VZl">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Food Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghQ-FG-VZl">
                         <rect key="frame" x="171" y="95" width="132" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#ofReviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njE-AE-Aye">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="#ofReviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njE-AE-Aye">
                         <rect key="frame" x="389" y="39" width="107" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="564-f2-0bc">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="564-f2-0bc">
                         <rect key="frame" x="171" y="14" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="RqL-Sb-dGS"/>
+                            <constraint firstAttribute="width" constant="42" id="gp3-Mj-ERc"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBg-3v-kMz">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TBg-3v-kMz">
                         <rect key="frame" x="171" y="35" width="139" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="TBg-3v-kMz" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="8" id="2so-nF-nMv"/>
+                    <constraint firstItem="9Sp-Ti-IhO" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="8" id="7BZ-NV-Z79"/>
+                    <constraint firstAttribute="trailing" secondItem="njE-AE-Aye" secondAttribute="trailing" constant="-10" id="7Sq-xG-ITh"/>
+                    <constraint firstItem="AqL-A0-nXW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="B5N-v2-qvo"/>
+                    <constraint firstItem="9Sp-Ti-IhO" firstAttribute="top" secondItem="TBg-3v-kMz" secondAttribute="bottom" constant="8" id="IFl-sf-z66"/>
+                    <constraint firstItem="ghQ-FG-VZl" firstAttribute="top" secondItem="9Sp-Ti-IhO" secondAttribute="bottom" id="MVD-l4-iPk"/>
+                    <constraint firstItem="8gI-7G-v5a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="OSJ-AW-gua"/>
+                    <constraint firstItem="564-f2-0bc" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="8" id="QiY-2p-8xR"/>
+                    <constraint firstItem="njE-AE-Aye" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="39" id="Ra1-Ej-07p"/>
+                    <constraint firstItem="ghQ-FG-VZl" firstAttribute="top" secondItem="9Sp-Ti-IhO" secondAttribute="bottom" id="TSo-gE-zRR"/>
+                    <constraint firstItem="ghQ-FG-VZl" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="8" id="Y7t-LS-K15"/>
+                    <constraint firstItem="564-f2-0bc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="bDp-2k-9wA"/>
+                    <constraint firstItem="9Sp-Ti-IhO" firstAttribute="top" secondItem="TBg-3v-kMz" secondAttribute="bottom" constant="8" id="quK-QH-rFT"/>
+                    <constraint firstItem="TBg-3v-kMz" firstAttribute="top" secondItem="564-f2-0bc" secondAttribute="bottom" id="tym-K2-cHD"/>
+                    <constraint firstAttribute="bottom" secondItem="ghQ-FG-VZl" secondAttribute="bottom" constant="7" id="y4g-Gt-qkD"/>
+                    <constraint firstItem="AqL-A0-nXW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yMr-CQ-zfe"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressLabel" destination="9Sp-Ti-IhO" id="YLR-Hh-dac"/>

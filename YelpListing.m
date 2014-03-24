@@ -27,7 +27,6 @@
 
 + (NSArray *)yelpListingsArray:(NSArray *)array
 {
-    NSLog(@"yelpListingsWithArray");
     NSMutableArray *yelpListings = [[NSMutableArray alloc] init];
     
     for (NSDictionary *dictionary in array) {
@@ -36,7 +35,6 @@
         
         [yelpListings addObject:listing];
     }
-    NSLog(@"Finishing yelpListingsWithArray");
     return yelpListings;
 }
 
