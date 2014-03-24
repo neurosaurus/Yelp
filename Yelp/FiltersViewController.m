@@ -11,7 +11,8 @@
 @interface FiltersViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,strong) NSArray *categories;
+@property (nonatomic,strong) NSMutableArray *categories;
+@property (nonatomic, assign) BOOL featuresExpanded;
 
 @end
 
@@ -22,12 +23,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Filters";
-        
-        UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButton:)];
-        self.navigationItem.rightBarButtonItem = searchButton;
-        
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel:)];
-    }
+           }
     return self;
 }
 
@@ -37,8 +33,48 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButton:)];
+    self.navigationItem.rightBarButtonItem = searchButton;
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel:)];
+
+    
     UINib *filterViewCellNib = [UINib nibWithNibName:@"FilterViewCell" bundle:nil];
     [self.tableView registerNib:filterViewCellNib forCellReuseIdentifier:@"FilterViewCell"];
+    
+    [self setupCategories];
+}
+
+- (void)setupCategories
+{
+    self.categories = [NSMutableArray arrayWithObjects:
+                       @{
+                         @"name":@"Price",
+                         @"type":@"segmented",
+                         @"list":@[@"$",@"$$",@"$$$",@"$$$$"]
+                         },
+                       @{
+                         @"name":@"Most Popular",
+                         @"type":@"switches",
+                         @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"]
+                         },
+                       @{
+                         @"name":@"Distance",
+                         @"type":@"expandable",
+                         @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"]
+                         },
+                       @{
+                         @"name":@"Sort By",
+                         @"type":@"expandable",
+                         @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"]
+                         },
+                       @{
+                         @"name":@"General Features",
+                         @"type":@"switches",
+                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"]
+                         },
+                       nil
+                       ];
 }
 
 #pragma mark - Buttons
@@ -66,25 +102,19 @@
     return [self.categories count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return @"Price";
+    } else if (section == 1) {
+        return @"Most Popular";
+    } else if (section == 2){
+        return @"Distance";
+    } else if (section == 3){
+        return @"Sort By";
+    } else {
+        return @"General Features";
+    }
+}
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return 0;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//}
-//
-//#pragma mark - Headers in Table view
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    
-//}
 @end

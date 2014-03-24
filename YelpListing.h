@@ -17,6 +17,8 @@
 @property (nonatomic, strong) NSString *index;
 @property (nonatomic, strong) NSString *listingImageUrl;
 @property (nonatomic, strong) NSString *ratingImageUrl;
+@property (nonatomic, strong) NSString *categories;
+@property (nonatomic, strong) NSMutableArray *categoriesArray;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

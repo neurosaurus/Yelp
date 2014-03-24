@@ -23,6 +23,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 @property (nonatomic, strong) NSArray *yelpListings;
 @property (nonatomic, strong) YelpClient *client;
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) NSMutableArray *restaurantsArray;
 
 @end
 
@@ -66,6 +67,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self.searchBar.delegate = self;
     
     header.topItem.titleView = self.searchBar;
+
 
     self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
     
@@ -111,21 +113,41 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YelpListing *listing = self.yelpListings[indexPath.row];
+    YelpListing *listing = [self.yelpListings objectAtIndex:indexPath.row];
     
-    NSString *text = listing.title;
-    UIFont *fontText = [UIFont boldSystemFontOfSize:17.0];
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(165, CGFLOAT_MAX)
-                                     options:NSStringDrawingUsesLineFragmentOrigin
-                                  attributes:@{NSFontAttributeName:fontText}
-                                     context:nil];
-    CGFloat heightOffset = 90;
-    return rect.size.height + heightOffset;
+    NSString *restaurantTitleText = listing.title;
+    UIFont *restaurantTitleFont = [UIFont boldSystemFontOfSize:15.0];
+    CGRect rectForRestaurantTitle = [restaurantTitleText boundingRectWithSize:CGSizeMake(120, CGFLOAT_MAX)
+                                                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                                                 attributes:@{NSFontAttributeName:restaurantTitleFont}
+                                                                    context:nil];
+    // Restaurant Address
+    NSString *restaurantAddressText = listing.address;
+    UIFont *restaurantAddressFont = [UIFont systemFontOfSize:13.0];
+    CGRect rectForAddress = [restaurantAddressText boundingRectWithSize:CGSizeMake(205, CGFLOAT_MAX)
+                                                                options:NSStringDrawingUsesLineFragmentOrigin
+                                                             attributes:@{NSFontAttributeName:restaurantAddressFont}
+                                                                context:nil];
+    
+    // Restaurant Categories
+    NSString *restaurantCategoriesText = listing.categories;
+    UIFont *restaurantCategoriesFont = [UIFont italicSystemFontOfSize:13.0];
+    CGRect rectForCategories = [restaurantCategoriesText boundingRectWithSize:CGSizeMake(205, CGFLOAT_MAX)
+                                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                                   attributes:@{NSFontAttributeName:restaurantCategoriesFont}
+                                                                      context:nil];
+    
+    CGFloat heightOffset = 42; // 17 (ratings) + 5 (spacing) * 5
+    CGFloat minHeight = 110; // 100 (image) + 5 (spacing) * 2
+    CGFloat dynamicHeight = rectForRestaurantTitle.size.height + rectForCategories.size.height + rectForAddress.size.height + heightOffset;
+    
+    return (dynamicHeight > minHeight) ? dynamicHeight : minHeight;
+
 }
 
-#pragma mark - Navigation Filter Bar Button
+#pragma mark - Navigation Bar
 
-- (void)onFilter:(UIBarButtonItem *)button
+- (void)onFilter
 {
     [self.navigationController pushViewController:[[FiltersViewController alloc] init] animated:YES];
 }
