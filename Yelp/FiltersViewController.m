@@ -7,12 +7,16 @@
 //
 
 #import "FiltersViewController.h"
+#import "SeeAllCell.h"
+#import "SegmentedPriceCell.h"
 
 @interface FiltersViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *categories;
 @property (nonatomic, assign) BOOL featuresExpanded;
+@property (nonatomic, assign) BOOL sortByExpanded;
+@property (nonatomic, assign) BOOL distanceExpanded;
 
 @end
 
@@ -42,11 +46,17 @@
     UINib *filterViewCellNib = [UINib nibWithNibName:@"FilterViewCell" bundle:nil];
     [self.tableView registerNib:filterViewCellNib forCellReuseIdentifier:@"FilterViewCell"];
     
+    UINib *seeAllNib = [UINib nibWithNibName:@"SeeAllCell" bundle:nil];
+    [self.tableView registerNib:seeAllNib forCellReuseIdentifier:@"SeeAllCell"];
+    
+    UINib *segmentedPricelNib = [UINib nibWithNibName:@"SegmentedPriceCell" bundle:nil];
+    [self.tableView registerNib:segmentedPricelNib forCellReuseIdentifier:@"SegmentedPriceCell"];
+    
     [self setupCategories];
 }
 
 - (void)setupCategories
-{
+{    
     self.categories = [NSMutableArray arrayWithObjects:
                        @{
                          @"name":@"Price",
@@ -97,10 +107,10 @@
 
 #pragma mark - Table view methods -- Datasource
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.categories count];
-}
+//- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [self.categories count];
+//}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -115,6 +125,78 @@
     } else {
         return @"General Features";
     }
+}
+
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if( [self.categories[section][@"name"]  isEqual: @"Distance"] ){
+        if(!self.distanceExpanded){
+            return 1;
+        } else {
+            return ((NSArray *)self.categories[section][@"list"]).count;
+        }
+    } else if( [self.categories[section][@"name"]  isEqual: @"Sort By"] ){
+        if(!self.sortByExpanded){
+            return 1;
+        } else {
+            return ((NSArray *)self.categories[section][@"list"]).count;
+        }
+    } else if([self.categories[section][@"name"]  isEqual: @"General Features"]) {
+        if(!self.featuresExpanded){
+            return 4;
+        } else {
+            // Adds one for the colapse cell
+            return ((NSArray *)self.categories[section][@"list"]).count;
+        }
+    } else if ([self.categories[section][@"name"]  isEqual: @"Price"]){
+        return 1;
+    } else {
+        return ((NSArray *)self.categories[section][@"list"]).count;
+    }
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"] && !self.featuresExpanded && indexPath.row == 3) {
+        SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
+        return cell;
+    } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Price"] ) {
+        SegmentedPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PriceCell" forIndexPath:indexPath];
+        return cell;
+        
+    } else {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        
+        cell.textLabel.text = self.categories[indexPath.section][@"list"][indexPath.row];
+        
+        if ([self.categories[indexPath.section][@"name"] isEqual: @"Price"] || [self.categories[indexPath.section][@"name"]  isEqual: @"Most Popular"] || [self.categories[indexPath.section][@"name"]  isEqual: @"General Features"]){
+            cell.accessoryView = [[UISwitch alloc] init];
+        } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Distance"] || [self.categories[indexPath.section][@"name"]  isEqual: @"Sort By"]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"row: %d", indexPath.row);
+    NSLog(@"section: %d", indexPath.section);
+    
+    if([self.categories[indexPath.section][@"name"]  isEqual: @"Distance"]){
+        self.distanceExpanded = !self.distanceExpanded;
+    } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Sort By"]) {
+        self.sortByExpanded = !self.sortByExpanded;
+    } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"]) {
+        self.featuresExpanded = !self.featuresExpanded;
+    }
+    
+    [self.tableView reloadData];
+    
 }
 
 @end

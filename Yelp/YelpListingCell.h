@@ -13,8 +13,6 @@
 
 @property (nonatomic, strong) YelpListing *yelpListing;
 
-- (CGFloat) customHeightForCell;
-
 @end
 
 

@@ -24,6 +24,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 @property (nonatomic, strong) YelpClient *client;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *restaurantsArray;
+@property (nonatomic, strong) UIView *searchBarView;
 
 @end
 
@@ -65,7 +66,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
-    
+    [self.searchBarView addSubview:self.searchBar];
     header.topItem.titleView = self.searchBar;
 
 
@@ -115,34 +116,57 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 {
     YelpListing *listing = [self.yelpListings objectAtIndex:indexPath.row];
     
-    NSString *restaurantTitleText = listing.title;
-    UIFont *restaurantTitleFont = [UIFont boldSystemFontOfSize:15.0];
-    CGRect rectForRestaurantTitle = [restaurantTitleText boundingRectWithSize:CGSizeMake(120, CGFLOAT_MAX)
-                                                                    options:NSStringDrawingUsesLineFragmentOrigin
-                                                                 attributes:@{NSFontAttributeName:restaurantTitleFont}
-                                                                    context:nil];
-    // Restaurant Address
-    NSString *restaurantAddressText = listing.address;
-    UIFont *restaurantAddressFont = [UIFont systemFontOfSize:13.0];
-    CGRect rectForAddress = [restaurantAddressText boundingRectWithSize:CGSizeMake(205, CGFLOAT_MAX)
-                                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                             attributes:@{NSFontAttributeName:restaurantAddressFont}
-                                                                context:nil];
-    
-    // Restaurant Categories
-    NSString *restaurantCategoriesText = listing.categories;
-    UIFont *restaurantCategoriesFont = [UIFont italicSystemFontOfSize:13.0];
-    CGRect rectForCategories = [restaurantCategoriesText boundingRectWithSize:CGSizeMake(205, CGFLOAT_MAX)
-                                                                      options:NSStringDrawingUsesLineFragmentOrigin
-                                                                   attributes:@{NSFontAttributeName:restaurantCategoriesFont}
-                                                                      context:nil];
-    
-    CGFloat heightOffset = 42; // 17 (ratings) + 5 (spacing) * 5
-    CGFloat minHeight = 110; // 100 (image) + 5 (spacing) * 2
-    CGFloat dynamicHeight = rectForRestaurantTitle.size.height + rectForCategories.size.height + rectForAddress.size.height + heightOffset;
-    
-    return (dynamicHeight > minHeight) ? dynamicHeight : minHeight;
+//    NSString *restaurantTitleText = listing.title;
+//    UIFont *restaurantTitleFont = [UIFont boldSystemFontOfSize:15.0];
+//    CGRect rectForRestaurantTitle = [restaurantTitleText boundingRectWithSize:CGSizeMake(120, CGFLOAT_MAX)
+//                                                                    options:NSStringDrawingUsesLineFragmentOrigin
+//                                                                 attributes:@{NSFontAttributeName:restaurantTitleFont}
+//                                                                    context:nil];
+//    // Restaurant Address
+//    NSString *restaurantAddressText = listing.address;
+//    UIFont *restaurantAddressFont = [UIFont systemFontOfSize:13.0];
+//    CGRect rectForAddress = [restaurantAddressText boundingRectWithSize:CGSizeMake(205, CGFLOAT_MAX)
+//                                                                options:NSStringDrawingUsesLineFragmentOrigin
+//                                                             attributes:@{NSFontAttributeName:restaurantAddressFont}
+//                                                                context:nil];
+//    
+//    // Restaurant Categories
+//    NSString *restaurantCategoriesText = listing.categories;
+//    UIFont *restaurantCategoriesFont = [UIFont italicSystemFontOfSize:13.0];
+//    CGRect rectForCategories = [restaurantCategoriesText boundingRectWithSize:CGSizeMake(205, CGFLOAT_MAX)
+//                                                                      options:NSStringDrawingUsesLineFragmentOrigin
+//                                                                   attributes:@{NSFontAttributeName:restaurantCategoriesFont}
+//                                                                      context:nil];
+//    
+    NSString *text = listing.title;
+    UIFont *fontText = [UIFont boldSystemFontOfSize:15.0];
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(165, CGFLOAT_MAX)
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName:fontText}
+                                     context:nil];
+    CGFloat heightOffset = 90;
+    return rect.size.height + heightOffset;
+}
 
+#pragma mark Search
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    NSString *searchText = searchBar.text;
+    
+    [self.client searchWithTerm:searchText success:^(AFHTTPRequestOperation *operation, id response) {
+        // Passing API results to the YelpListing model for creation
+        self.yelpListings = [YelpListing yelpListingsArray:response[@"businesses"]];
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", [error description]);
+    }];
+    
 }
 
 #pragma mark - Navigation Bar
