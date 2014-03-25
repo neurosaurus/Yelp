@@ -28,7 +28,7 @@
         _radius = 4;
         
         _sectionTitles = @[@"Sort", @"Distance", @"Deals", @"Category"];
-        _offeringDeals = false;
+        _offerDeals = false;
         
         NSDictionary *categoryDict = @{@"Active Life": @"active",
                                        @"Arts & Entertainment" : @"arts",
@@ -69,12 +69,12 @@
     return [NSString stringWithFormat:@"%ld", (long)_sort];
 }
 
-- (NSDictionary *)getParametersWithTerm:(NSString *)term {
+- (NSDictionary *)getParametersTerm:(NSString *)term {
     return @{
              @"term" : term,
              @"sort" : [NSString stringWithFormat:@"%ld", (long)_sort],
              @"location" : @"San Francisco",
-             @"deals_filter" : _offeringDeals ? @"true" : @"false",
+             @"deals_filter" : _offerDeals ? @"true" : @"false",
              @"radius_filter" : [self getRadiusFilter]
              };
 }

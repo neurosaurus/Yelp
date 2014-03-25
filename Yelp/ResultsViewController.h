@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "FiltersViewController.h"
 
-@class YelpListing;
+@class Businesses;
 @class Filters;
 
-@interface ResultsLIstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface ResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
-@property (nonatomic, strong) YelpListing *listingResults;
+@property (nonatomic, strong) Businesses *listingResults;
 @property (nonatomic, strong) Filters *filters;
 
 @end

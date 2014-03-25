@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ResultsLIstViewController.h"
+#import "ResultsViewController.h"
 
 @implementation AppDelegate
 
@@ -15,7 +15,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.window.rootViewController = [[ResultsLIstViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[ResultsViewController alloc] init]];
+    self.window.rootViewController = nvc;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

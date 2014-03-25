@@ -9,6 +9,7 @@
 #import "FiltersViewController.h"
 #import "SeeAllCell.h"
 #import "SegmentedPriceCell.h"
+#import "Filters.h"
 
 @interface FiltersViewController ()
 

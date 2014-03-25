@@ -18,7 +18,7 @@
 @property (nonatomic, assign) NSInteger radius;
 @property (nonatomic, strong) NSArray *radiusOptions;
 @property (nonatomic, assign) BOOL offerDeals;
-- (NSDictionary *)getParametersWithTerm:(NSString *)term;
+- (NSDictionary *)getParametersTerm:(NSString *)term;
 - (NSString *)labelForRadiusAtIndex:(NSInteger)index;
 
 @end

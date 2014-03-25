@@ -37,17 +37,4 @@
     return self;
 }
 
-+ (NSArray *)yelpListingsArray:(NSArray *)array
-{
-    NSMutableArray *yelpListings = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *dictionary in array) {
-        YelpListing *listing = [[YelpListing alloc] initWithDictionary:dictionary];
-        NSLog(@"name: %@, reviews: %@, address: %@", listing.title, listing.reviewCount, listing.address);
-        
-        [yelpListings addObject:listing];
-    }
-    return yelpListings;
-}
-
 @end

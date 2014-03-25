@@ -19,9 +19,8 @@
 @property (nonatomic, strong) NSString *ratingImageUrl;
 @property (nonatomic, strong) NSString *categories;
 @property (nonatomic, strong) NSMutableArray *categoriesArray;
+@property (nonatomic, strong) NSArray *data;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
-
-+ (NSArray *)yelpListingsArray:(NSArray *)array;
 
 @end
