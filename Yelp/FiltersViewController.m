@@ -26,65 +26,59 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Filters";
-           }
+        self.categories = [NSMutableArray arrayWithObjects:@{
+                                                             @"name":@"Price",
+                                                             @"type":@"segmented",
+                                                             @"list":@[@"$",@"$$",@"$$$",@"$$$$"]
+                                                             },
+                           @{
+                             @"name":@"Most Popular",
+                             @"type":@"switches",
+                             @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"]
+                             },
+                           @{
+                             @"name":@"Distance",
+                             @"type":@"expandable",
+                             @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"]
+                             },
+                           @{
+                             @"name":@"Sort By",
+                             @"type":@"expandable",
+                             @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"]
+                             },
+                           @{
+                             @"name":@"General Features",
+                             @"type":@"expandable",
+                             @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"]
+                             },nil];
+    }
     return self;
 }
 
 - (void)viewDidLoad
-{ 
+{
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchButton:)];
-    self.navigationItem.rightBarButtonItem = searchButton;
+    [self.tableView registerNib:[UINib nibWithNibName:@"SegmentedPriceCell" bundle:nil] forCellReuseIdentifier:@"SegmentedPriceCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SeeAllCell" bundle:nil] forCellReuseIdentifier:@"SeeAllCell"];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel:)];
-
+    UINavigationBar *header = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,320,45)];
     
-    UINib *filterViewCellNib = [UINib nibWithNibName:@"FilterViewCell" bundle:nil];
-    [self.tableView registerNib:filterViewCellNib forCellReuseIdentifier:@"FilterViewCell"];
+    UINavigationItem *buttonHold = [[UINavigationItem alloc]initWithTitle:@"Filter"];
     
-    UINib *seeAllNib = [UINib nibWithNibName:@"SeeAllCell" bundle:nil];
-    [self.tableView registerNib:seeAllNib forCellReuseIdentifier:@"SeeAllCell"];
+    UIBarButtonItem *barBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
+    UIBarButtonItem *barSaveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveFilters)];
     
-    UINib *segmentedPricelNib = [UINib nibWithNibName:@"SegmentedPriceCell" bundle:nil];
-    [self.tableView registerNib:segmentedPricelNib forCellReuseIdentifier:@"SegmentedPriceCell"];
+    [buttonHold setLeftBarButtonItem:barBackButton];
+    [buttonHold setRightBarButtonItem:barSaveButton];
     
-    [self setupCategories];
-}
-
-- (void)setupCategories
-{    
-    self.categories = [NSMutableArray arrayWithObjects:
-                       @{
-                         @"name":@"Price",
-                         @"type":@"segmented",
-                         @"list":@[@"$",@"$$",@"$$$",@"$$$$"]
-                         },
-                       @{
-                         @"name":@"Most Popular",
-                         @"type":@"switches",
-                         @"list":@[@"Open Now",@"Hot & New",@"Offering a Deal",@"Delivery"]
-                         },
-                       @{
-                         @"name":@"Distance",
-                         @"type":@"expandable",
-                         @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"]
-                         },
-                       @{
-                         @"name":@"Sort By",
-                         @"type":@"expandable",
-                         @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"]
-                         },
-                       @{
-                         @"name":@"General Features",
-                         @"type":@"switches",
-                         @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"]
-                         },
-                       nil
-                       ];
+    NSArray *barItemArray = [[NSArray alloc]initWithObjects:buttonHold,nil];
+    
+    [header setItems:barItemArray];
+    
+    [self.tableView setTableHeaderView:header];
 }
 
 #pragma mark - Buttons
@@ -106,11 +100,6 @@
 }
 
 #pragma mark - Table view methods -- Datasource
-
-//- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return [self.categories count];
-//}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

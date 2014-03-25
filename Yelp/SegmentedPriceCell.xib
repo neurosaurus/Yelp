@@ -25,6 +25,9 @@
                     </segmentedControl>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="segmentedControl" destination="O9Z-bh-gCj" id="qXT-Qp-jqw"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

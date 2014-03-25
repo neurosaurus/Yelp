@@ -25,6 +25,9 @@
                     <constraint firstItem="3xW-kB-KbW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="I0E-Ez-eaX"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="title" destination="3xW-kB-KbW" id="QvX-rM-ppM"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

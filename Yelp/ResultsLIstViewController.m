@@ -11,6 +11,8 @@
 #import "YelpClient.h"
 #import "YelpListingCell.h"
 #import "YelpListing.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+
 
 NSString * const kYelpConsumerKey = @"vxKwwcR_NMQ7WaEiQBK_CA";
 NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
@@ -24,6 +26,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 @property (nonatomic, strong) YelpClient *client;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *restaurantsArray;
+@property (nonatomic, assign) int offset;
 @property (nonatomic, strong) UIView *searchBarView;
 
 @end
@@ -45,7 +48,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     [super viewDidLoad];
     UINib *yelpNib = [UINib nibWithNibName:@"YelpListingCell" bundle:nil];
     [self.tableView registerNib:yelpNib forCellReuseIdentifier:@"YelpListingCell"];
-//    self.tableView.rowHeight = 130;
     
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
@@ -95,7 +97,12 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.yelpListings.count;
+    return 10;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.searchBar resignFirstResponder];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,8 +110,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     YelpListingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YelpListingCell" forIndexPath:indexPath];
     
     YelpListing *listing = self.yelpListings[indexPath.row];
-    
-    // Used to set indexLabel to number listings on custom cell
     listing.index    = [NSString stringWithFormat: @"%i", indexPath.row];
     
     cell.yelpListing = listing;
@@ -154,25 +159,26 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     [searchBar resignFirstResponder];
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-    NSString *searchText = searchBar.text;
-    
-    [self.client searchWithTerm:searchText success:^(AFHTTPRequestOperation *operation, id response) {
-        // Passing API results to the YelpListing model for creation
-        self.yelpListings = [YelpListing yelpListingsArray:response[@"businesses"]];
-        [self.tableView reloadData];
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error: %@", [error description]);
-    }];
-    
-}
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+//    UITextField *searchBarTextField;
+//    
+//    for (UIView *subView in searchBar.subviews){
+//        for (UIView *secondLeveSubView in subView.subviews){
+//            if ([secondLeveSubView isKindOfClass:[UITextField class]]) {
+//                searchBarTextField = (UITextField *)secondLeveSubView;
+//                break;
+//            }
+//        }
+//    }
+//}
 
 #pragma mark - Navigation Bar
 
 - (void)onFilter
 {
-    [self.navigationController pushViewController:[[FiltersViewController alloc] init] animated:YES];
+    [self.searchBar resignFirstResponder];
+    FiltersViewController *filtersViewController = [[FiltersViewController alloc] initWithNibName:NSStringFromClass([FiltersViewController class]) bundle:nil];
+    [self presentViewController:filtersViewController animated:YES completion:^{}];
+    return;
 }
 @end

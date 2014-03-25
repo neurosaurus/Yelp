@@ -10,4 +10,5 @@
 
 @interface SegmentedPriceCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
 @end
