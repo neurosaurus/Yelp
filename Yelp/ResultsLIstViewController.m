@@ -10,6 +10,7 @@
 #import "FiltersViewController.h"
 #import "YelpClient.h"
 #import "YelpListingCell.h"
+#import "Filters.h"
 #import "YelpListing.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
@@ -38,7 +39,9 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        
+        self.title = @"Yelp";
+        self.searchTerm = "@Enter here";
+        _filters
     }
     return self;
 }
@@ -162,8 +165,10 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    self.searchTerm = searchBar.text;
     [self.searchBar resignFirstResponder];
+    self.searchTerm = searchBar.text;
+    [self search];
+
 }
 
 

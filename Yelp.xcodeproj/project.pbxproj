@@ -12,6 +12,7 @@
 		EB536D6F18DFF66000EA7AA4 /* SeeAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB536D6D18DFF66000EA7AA4 /* SeeAllCell.xib */; };
 		EB536D7318DFFCAA00EA7AA4 /* SegmentedPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB536D7118DFFCAA00EA7AA4 /* SegmentedPriceCell.m */; };
 		EB536D7418DFFCAA00EA7AA4 /* SegmentedPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB536D7218DFFCAA00EA7AA4 /* SegmentedPriceCell.xib */; };
+		EB727D2F18E1D83C00514BC3 /* Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = EB727D2E18E1D83C00514BC3 /* Filters.m */; };
 		EBA15A8418DE2A6800DC1449 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA15A8318DE2A6800DC1449 /* Foundation.framework */; };
 		EBA15A8618DE2A6800DC1449 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA15A8518DE2A6800DC1449 /* CoreGraphics.framework */; };
 		EBA15A8818DE2A6800DC1449 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA15A8718DE2A6800DC1449 /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		EB536D7018DFFCAA00EA7AA4 /* SegmentedPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedPriceCell.h; sourceTree = "<group>"; };
 		EB536D7118DFFCAA00EA7AA4 /* SegmentedPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedPriceCell.m; sourceTree = "<group>"; };
 		EB536D7218DFFCAA00EA7AA4 /* SegmentedPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentedPriceCell.xib; sourceTree = "<group>"; };
+		EB727D2D18E1D83C00514BC3 /* Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filters.h; sourceTree = "<group>"; };
+		EB727D2E18E1D83C00514BC3 /* Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filters.m; sourceTree = "<group>"; };
 		EBA15A8018DE2A6800DC1449 /* Yelp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA15A8318DE2A6800DC1449 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EBA15A8518DE2A6800DC1449 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -195,6 +198,8 @@
 			children = (
 				EBA15AC918DE478C00DC1449 /* YelpListing.h */,
 				EBA15ACA18DE478C00DC1449 /* YelpListing.m */,
+				EB727D2D18E1D83C00514BC3 /* Filters.h */,
+				EB727D2E18E1D83C00514BC3 /* Filters.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBDB564D18DEBC9900A91078 /* FiltersViewController.m in Sources */,
+				EB727D2F18E1D83C00514BC3 /* Filters.m in Sources */,
 				EBA15ACF18DE47C500DC1449 /* YelpListingCell.m in Sources */,
 				EB536D7318DFFCAA00EA7AA4 /* SegmentedPriceCell.m in Sources */,
 				EB536D6E18DFF66000EA7AA4 /* SeeAllCell.m in Sources */,
