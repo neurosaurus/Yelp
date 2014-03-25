@@ -85,24 +85,43 @@
 #pragma mark - Buttons
 - (void)onCancel:(UIBarButtonItem *)button
 {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)onSearchButton:(UIBarButtonItem *)button
-{
-    NSLog(@"Search");
-    //[self.delegate filtersViewController:self didSetFilters:_filters];
+    [self dismissViewControllerAnimated:YES completion:^{}];
+    return;
 }
 
 - (void)saveFilter:(UIBarButtonItem *)button
 {
+    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     
+    [self filterSettings:filters];
+    [self dismissViewControllerAnimated:YES completion:^{}];
+    return;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.categories.count;
+}
+
+#pragma mark - Filter Delegate
+
+- (void)filterSettings:(NSMutableDictionary *)data
+{
+    if ([self.delegate respondsToSelector:@selector(filterSettings:)])
+    {
+        [self.delegate filterSettings:data];
+    }
+}
+
+- (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view methods -- Datasource
