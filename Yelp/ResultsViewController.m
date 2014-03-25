@@ -148,7 +148,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     [self dismissViewControllerAnimated:YES completion: nil];
 }
 
-
 #pragma mark - Navigation Bar
 
 - (void)onFilter:(UIBarButtonItem *)button

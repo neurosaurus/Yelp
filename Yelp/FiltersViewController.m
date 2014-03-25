@@ -113,11 +113,11 @@
     }
 }
 
-- (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value
-{
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-
-}
+//- (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value
+//{
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+//
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -172,8 +172,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"] && !self.featuresExpanded && indexPath.row == 3) {
         SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
         return cell;
