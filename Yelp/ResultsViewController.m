@@ -50,6 +50,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
                                                                          style:UIBarButtonItemStylePlain
                                                                         target:self
                                                                         action:@selector(onFilter:)];
+        
         self.navigationItem.rightBarButtonItem = filterButton;
         
         UISearchBar *searchBar = [[UISearchBar alloc] init];
@@ -140,24 +141,22 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 - (void)filtersViewController:(FiltersViewController *)filtersViewController
                 didSetFilters:(Filters *)filters
 {
-    //if (nil != filters) {
+    if (nil != filters) {
         _filters = filters;
         [self loadYelp];
-    //}
+    }
     [self dismissViewControllerAnimated:YES completion: nil];
 }
 
 
 #pragma mark - Navigation Bar
 
-//- (void)onFilter:(UIBarButtonItem *)button
-//{
-//    FiltersViewController *fvc = [[FiltersViewController alloc] init];
-////    fvc.filters = _filters;
-//  //  fvc.delegate = self;
-//    
-//    UINavigationController *navigationController = [[UINavigationController alloc]
-//                                                    initWithRootViewController:fvc];
-//    [self presentViewController:navigationController animated:YES completion: nil];
-//}
+- (void)onFilter:(UIBarButtonItem *)button
+{
+    FiltersViewController *fvc = [[FiltersViewController alloc] init];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:fvc];
+    [self presentViewController:navigationController animated:YES completion: nil];
+}
 @end

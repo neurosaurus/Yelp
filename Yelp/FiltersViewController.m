@@ -154,7 +154,7 @@
         SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
         return cell;
     } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Price"] ) {
-        SegmentedPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PriceCell" forIndexPath:indexPath];
+        SegmentedPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentedPriceCell" forIndexPath:indexPath];
         return cell;
         
     } else {
