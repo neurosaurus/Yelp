@@ -26,8 +26,8 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 @property (nonatomic, strong) YelpClient *client;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) NSMutableArray *restaurantsArray;
-@property (nonatomic, assign) int offset;
 @property (nonatomic, strong) UIView *searchBarView;
+@property (strong, nonatomic) NSString *searchTerm;
 
 @end
 
@@ -155,22 +155,17 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 #pragma mark Search
 
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
     [searchBar resignFirstResponder];
 }
 
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-//    UITextField *searchBarTextField;
-//    
-//    for (UIView *subView in searchBar.subviews){
-//        for (UIView *secondLeveSubView in subView.subviews){
-//            if ([secondLeveSubView isKindOfClass:[UITextField class]]) {
-//                searchBarTextField = (UITextField *)secondLeveSubView;
-//                break;
-//            }
-//        }
-//    }
-//}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchTerm = searchBar.text;
+    [self.searchBar resignFirstResponder];
+}
+
 
 #pragma mark - Navigation Bar
 

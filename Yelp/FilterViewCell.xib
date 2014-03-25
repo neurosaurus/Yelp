@@ -26,10 +26,6 @@
                     </switch>
                 </subviews>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="buttonSwitch" destination="qdn-dO-ksO" id="DFH-kg-bnW"/>
-                <outlet property="categoryLabel" destination="nEC-j8-mzY" id="Jqo-do-rer"/>
-            </connections>
         </tableViewCell>
     </objects>
 </document>
