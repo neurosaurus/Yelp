@@ -21,4 +21,11 @@
 
     // Configure the view for the selected state
 }
+
+- (void)didChangeValue:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(sender:didChangeValue:)]) {
+        [self.delegate sender:self didChangeValue:((UISwitch*)self.accessoryView).on];
+    }
+}
+
 @end

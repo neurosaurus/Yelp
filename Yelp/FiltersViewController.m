@@ -64,13 +64,13 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SegmentedPriceCell" bundle:nil] forCellReuseIdentifier:@"SegmentedPriceCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"SeeAllCell" bundle:nil] forCellReuseIdentifier:@"SeeAllCell"];
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"SeeAllCell" bundle:nil] forCellReuseIdentifier:@"FilterViewCell"];
     UINavigationBar *header = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,320,45)];
     
     UINavigationItem *buttonHold = [[UINavigationItem alloc]initWithTitle:@"Filter"];
     
-    UIBarButtonItem *barBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
-    UIBarButtonItem *barSaveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveFilters)];
+    UIBarButtonItem *barBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onCancel:)];
+    UIBarButtonItem *barSaveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveFilter:)];
     
     [buttonHold setLeftBarButtonItem:barBackButton];
     [buttonHold setRightBarButtonItem:barSaveButton];
@@ -92,6 +92,11 @@
 {
     NSLog(@"Search");
     //[self.delegate filtersViewController:self didSetFilters:_filters];
+}
+
+- (void)saveFilter:(UIBarButtonItem *)button
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

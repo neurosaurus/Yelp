@@ -6,10 +6,21 @@
 //  Copyright (c) 2014 Tripta Gupta. All rights reserved.
 //
 
+@class FilterViewCell;
+
+@protocol FilterViewCellDelgate <NSObject>
+
+@optional
+- (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value;
+
+@end
+
 #import <UIKit/UIKit.h>
 
 @interface FilterViewCell : UITableViewCell
 
-@property (nonatomic,strong) NSString *categoryName;
+//@property (nonatomic,strong) NSString *categoryName;
+@property (nonatomic, assign) id<FilterViewCellDelgate> delegate;
+
 
 @end
