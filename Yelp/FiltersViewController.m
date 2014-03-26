@@ -211,8 +211,8 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"] && !self.featuresExpanded && indexPath.row == 3) {
         SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
         return cell;
@@ -242,16 +242,19 @@
             return cell;
         }
         
-        
     } else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        
         cell.textLabel.text = self.categories[indexPath.section][@"list"][indexPath.row];
         
-        if ([self.categories[indexPath.section][@"name"] isEqual: @"Price"] || [self.categories[indexPath.section][@"name"]  isEqual: @"Most Popular"] || [self.categories[indexPath.section][@"name"]  isEqual: @"General Features"]){
-            cell.accessoryView = [[UISwitch alloc] init];
-        } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Distance"] || [self.categories[indexPath.section][@"name"]  isEqual: @"Sort By"]){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if ([self.categories[indexPath.section][@"name"]  isEqual: @"Distance"]){
+            if ([self.distance[indexPath.row] boolValue]){
+                
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+        } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Sort By"]){
+            if ([self.sortBy[indexPath.row] boolValue]){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
         }
         return cell;
     }
@@ -269,8 +272,10 @@
         self.sortByExpanded = !self.sortByExpanded;
     } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"]) {
         self.featuresExpanded = !self.featuresExpanded;
+    } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Categories"] && indexPath.row == 3 && !self.categoriesExpanded) {
+    self.categoriesExpanded = !self.categoriesExpanded;
     }
-    
+
     [self.tableView reloadData];
     
 }
