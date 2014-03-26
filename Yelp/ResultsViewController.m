@@ -7,7 +7,7 @@
 //
 
 #import "ResultsViewController.h"
-#import "FiltersViewController.h"
+#import "FilterViewController.h"
 #import "YelpClient.h"
 #import "YelpListingCell.h"
 #import "Filters.h"
@@ -138,7 +138,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 }
 
-- (void)filtersViewController:(FiltersViewController *)filtersViewController
+- (void)filtersViewController:(FilterViewController *)filtersViewController
                 didSetFilters:(Filters *)filters
 {
     _filters = filters;
@@ -168,7 +168,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (void)onFilter:(UIBarButtonItem *)button
 {
-    FiltersViewController *fvc = [[FiltersViewController alloc] init];
+    FilterViewController *fvc = [[FilterViewController alloc] init];
     fvc.delegate = self;
     UINavigationController *navigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:fvc];

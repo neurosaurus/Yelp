@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    [self.onSwitch addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -23,9 +24,7 @@
 }
 
 - (void)didChangeValue:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(sender:didChangeValue:)]) {
-        [self.delegate sender:self didChangeValue:((UISwitch*)self.accessoryView).on];
-    }
+    [self.delegate sender:self didChangeValue:self.onSwitch.on];
 }
 
 @end

@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Tripta Gupta. All rights reserved.
 //
 
-#import "FiltersViewController.h"
+#import "FilterViewController.h"
 #import "SeeAllCell.h"
 #import "SegmentedPriceCell.h"
 #import "Filters.h"
 #import "FilterViewCell.h"
 
-@interface FiltersViewController ()
+@interface FilterViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *categories;
@@ -29,7 +29,7 @@
 
 @end
 
-@implementation FiltersViewController
+@implementation FilterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -32,8 +32,8 @@
 		EBA15ACB18DE478C00DC1449 /* YelpListing.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA15ACA18DE478C00DC1449 /* YelpListing.m */; };
 		EBA15ACF18DE47C500DC1449 /* YelpListingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA15ACD18DE47C500DC1449 /* YelpListingCell.m */; };
 		EBA15AD018DE47C500DC1449 /* YelpListingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA15ACE18DE47C500DC1449 /* YelpListingCell.xib */; };
-		EBDB564D18DEBC9900A91078 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDB564B18DEBC9900A91078 /* FiltersViewController.m */; };
-		EBDB564E18DEBC9900A91078 /* FiltersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBDB564C18DEBC9900A91078 /* FiltersViewController.xib */; };
+		EBDB564D18DEBC9900A91078 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDB564B18DEBC9900A91078 /* FilterViewController.m */; };
+		EBDB564E18DEBC9900A91078 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBDB564C18DEBC9900A91078 /* FilterViewController.xib */; };
 		EBDB565218DEBECF00A91078 /* FilterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBDB565018DEBECF00A91078 /* FilterViewCell.m */; };
 		EBDB565318DEBECF00A91078 /* FilterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBDB565118DEBECF00A91078 /* FilterViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -86,9 +86,9 @@
 		EBA15ACC18DE47C500DC1449 /* YelpListingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpListingCell.h; sourceTree = "<group>"; };
 		EBA15ACD18DE47C500DC1449 /* YelpListingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpListingCell.m; sourceTree = "<group>"; };
 		EBA15ACE18DE47C500DC1449 /* YelpListingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YelpListingCell.xib; sourceTree = "<group>"; };
-		EBDB564A18DEBC9900A91078 /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
-		EBDB564B18DEBC9900A91078 /* FiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltersViewController.m; sourceTree = "<group>"; };
-		EBDB564C18DEBC9900A91078 /* FiltersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersViewController.xib; sourceTree = "<group>"; };
+		EBDB564A18DEBC9900A91078 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		EBDB564B18DEBC9900A91078 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		EBDB564C18DEBC9900A91078 /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		EBDB564F18DEBECF00A91078 /* FilterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewCell.h; sourceTree = "<group>"; };
 		EBDB565018DEBECF00A91078 /* FilterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewCell.m; sourceTree = "<group>"; };
 		EBDB565118DEBECF00A91078 /* FilterViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewCell.xib; sourceTree = "<group>"; };
@@ -234,9 +234,9 @@
 				EBA15AB818DE2FD200DC1449 /* ResultsViewController.h */,
 				EBA15AB918DE2FD200DC1449 /* ResultsViewController.m */,
 				EBA15ABA18DE2FD200DC1449 /* ResultsViewController.xib */,
-				EBDB564A18DEBC9900A91078 /* FiltersViewController.h */,
-				EBDB564B18DEBC9900A91078 /* FiltersViewController.m */,
-				EBDB564C18DEBC9900A91078 /* FiltersViewController.xib */,
+				EBDB564A18DEBC9900A91078 /* FilterViewController.h */,
+				EBDB564B18DEBC9900A91078 /* FilterViewController.m */,
+				EBDB564C18DEBC9900A91078 /* FilterViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 				EBDB565318DEBECF00A91078 /* FilterViewCell.xib in Resources */,
 				EBA15AD018DE47C500DC1449 /* YelpListingCell.xib in Resources */,
 				EBA15A8E18DE2A6800DC1449 /* InfoPlist.strings in Resources */,
-				EBDB564E18DEBC9900A91078 /* FiltersViewController.xib in Resources */,
+				EBDB564E18DEBC9900A91078 /* FilterViewController.xib in Resources */,
 				EBA15ABC18DE2FD200DC1449 /* ResultsViewController.xib in Resources */,
 				EB536D6F18DFF66000EA7AA4 /* SeeAllCell.xib in Resources */,
 				EB536D7418DFFCAA00EA7AA4 /* SegmentedPriceCell.xib in Resources */,
@@ -386,7 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EBDB564D18DEBC9900A91078 /* FiltersViewController.m in Sources */,
+				EBDB564D18DEBC9900A91078 /* FilterViewController.m in Sources */,
 				EB727D2F18E1D83C00514BC3 /* Filters.m in Sources */,
 				EBA15ACF18DE47C500DC1449 /* YelpListingCell.m in Sources */,
 				EB536D7318DFFCAA00EA7AA4 /* SegmentedPriceCell.m in Sources */,
