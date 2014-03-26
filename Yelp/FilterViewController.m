@@ -12,7 +12,7 @@
 #import "Filters.h"
 #import "FilterViewCell.h"
 
-@interface FilterViewController ()
+@interface FilterViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *categories;
