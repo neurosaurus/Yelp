@@ -10,6 +10,8 @@
 #import "FilterViewCell.h"
 #import "SegmentedPriceCell.h"
 
+@class FilterViewController;
+
 @protocol FilterViewDelegate <NSObject>
 
 - (void)filterSettings:(NSMutableDictionary *)data;

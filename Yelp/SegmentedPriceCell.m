@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    [self.segments addTarget:self action:@selector(didChangeValue:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

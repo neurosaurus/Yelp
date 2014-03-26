@@ -8,6 +8,12 @@
 
 #import "FilterViewCell.h"
 
+@interface FilterViewCell ()
+
+- (void)didChangeValue:(id)sender;
+
+@end
+
 @implementation FilterViewCell
 
 - (void)awakeFromNib

@@ -128,7 +128,7 @@
     
     [self filterSettings:filters];
     [self dismissViewControllerAnimated:YES completion:^{}];
-    return;
+//    [self.delegate addItemViewController:self filterData:yourFilterData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
