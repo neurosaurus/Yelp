@@ -96,8 +96,8 @@
     
     UINavigationItem *buttonHold = [[UINavigationItem alloc]initWithTitle:@"Filter"];
     
-    UIBarButtonItem *barBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onCancel:)];
-    UIBarButtonItem *barSaveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveFilter:)];
+    UIBarButtonItem *barBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(onCancel)];
+    UIBarButtonItem *barSaveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveFilter)];
     
     [buttonHold setLeftBarButtonItem:barBackButton];
     [buttonHold setRightBarButtonItem:barSaveButton];
@@ -110,13 +110,15 @@
 }
 
 #pragma mark - Buttons
-- (void)onCancel:(UIBarButtonItem *)button
+- (void)onCancel
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
     return;
 }
 
-- (void)saveFilter:(UIBarButtonItem *)button
+
+#pragma mark - Filter Delegate
+- (void)saveFilter
 {
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     
@@ -128,22 +130,6 @@
     
     [self filterSettings:filters];
     [self dismissViewControllerAnimated:YES completion:^{}];
-//    [self.delegate addItemViewController:self filterData:yourFilterData];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return self.categories.count;
-}
-
-#pragma mark - Filter Delegate
-
-- (void)filterSettings:(NSMutableDictionary *)data
-{
-    if ([self.delegate respondsToSelector:@selector(filterSettings:)])
-    {
-        [self.delegate filterSettings:data];
-    }
 }
 
 - (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value{
@@ -158,12 +144,24 @@
     }
 }
 
+- (void)filterSettings:(NSMutableDictionary *)data
+{
+    if ([self.delegate respondsToSelector:@selector(filterSettings:)]) {
+        [self.delegate filterSettings:data];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view methods -- Datasource
+#pragma mark - Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.categories.count;
+}
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
