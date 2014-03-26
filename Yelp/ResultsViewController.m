@@ -138,14 +138,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 }
 
-- (void)filtersViewController:(FilterViewController *)filtersViewController
-                didSetFilters:(Filters *)filters
-{
-    _filters = filters;
-    [self loadYelp];
-    [self dismissViewControllerAnimated:YES completion: nil];
-}
-
 - (void)filterSettings:(NSMutableDictionary *)data
 {
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
