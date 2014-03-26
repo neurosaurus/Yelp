@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tripta Gupta. All rights reserved.
 //
 
-@protocol FilterViewCellDelgate <NSObject>
+@protocol FilterViewCellDelegate <NSObject>
 
 - (void)filterSettings:(NSMutableDictionary *)data;
 
@@ -14,9 +14,11 @@
 
 #import <UIKit/UIKit.h>
 #import "FilterViewCell.h"
+#import "SegmentedPriceCell.h"
+
 
 @interface FiltersViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, assign) id<FilterViewCellDelgate> delegate;
+@property (nonatomic, assign) id<FilterViewCellDelegate> delegate;
 
 @end

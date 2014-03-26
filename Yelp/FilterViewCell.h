@@ -8,7 +8,7 @@
 
 @class FilterViewCell;
 
-@protocol FilterViewCellDelgate <NSObject>
+@protocol FilterViewCellDelegate <NSObject>
 
 @optional
 - (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value;
@@ -20,7 +20,7 @@
 @interface FilterViewCell : UITableViewCell
 
 //@property (nonatomic,strong) NSString *categoryName;
-@property (nonatomic, assign) id<FilterViewCellDelgate> delegate;
+@property (nonatomic, assign) id<FilterViewCellDelegate> delegate;
 
 
 @end

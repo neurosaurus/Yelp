@@ -141,11 +141,27 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 - (void)filtersViewController:(FiltersViewController *)filtersViewController
                 didSetFilters:(Filters *)filters
 {
-    if (nil != filters) {
-        _filters = filters;
-        [self loadYelp];
-    }
+    _filters = filters;
+    [self loadYelp];
     [self dismissViewControllerAnimated:YES completion: nil];
+}
+
+- (void)filterSettings:(NSMutableDictionary *)data
+{
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    
+    if (data[@"popular"][0])
+    {
+        [dictionary setObject:@"100" forKey:@"radius_filter"];
+    } else if (data[@"distance"][1]) {
+        [dictionary setObject:@"500" forKey:@"radius_filter"];
+    } else if (data[@"distance"][2]) {
+        [dictionary setObject:@"1000" forKey:@"radius_filter"];
+    } else if (data[@"distance"][3]) {
+        [dictionary setObject:@"20000" forKey:@"radius_filter"];
+    }
+    
+    [self loadYelp];
 }
 
 #pragma mark - Navigation Bar

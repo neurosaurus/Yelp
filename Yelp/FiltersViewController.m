@@ -23,7 +23,8 @@
 @property (nonatomic, strong) NSMutableArray *popular;
 @property (nonatomic, strong) NSMutableArray *distance;
 @property (nonatomic, strong) NSMutableArray *sortBy;
-
+@property (nonatomic, strong) NSMutableArray *generalFeatures;
+@property (nonatomic, strong) NSMutableArray *categoriesFeatures;
 
 @end
 
@@ -36,7 +37,8 @@
         self.categories = [NSMutableArray arrayWithObjects:@{
                                                              @"name":@"Price",
                                                              @"type":@"segmented",
-                                                             @"list":@[@"$",@"$$",@"$$$",@"$$$$"]
+                                                             @"list":@[@"$",@"$$",@"$$$",@"$$$$"],
+                                                             @"values":@1
                                                              },
                            @{
                              @"name":@"Most Popular",
@@ -46,18 +48,36 @@
                            @{
                              @"name":@"Distance",
                              @"type":@"expandable",
-                             @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"]
+                             @"list":@[@"Auto",@"2 blocks",@"6 blocks",@"1 mile",@"5 miles"],
+                             @"values":@[@(NO), @(NO), @(NO), @(NO), @(NO)]
                              },
                            @{
                              @"name":@"Sort By",
                              @"type":@"expandable",
-                             @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"]
+                             @"list":@[@"Best Match",@"Distance",@"Rating",@"Most Reviewed"],
+                             @"values":@[@(NO), @(NO), @(NO), @(NO)]
                              },
                            @{
                              @"name":@"General Features",
                              @"type":@"expandable",
-                             @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"]
-                             },nil];
+                             @"list":@[@"Take-out",@"Good for Groups",@"Has TV",@"Accepts Credit Cards",@"Wheelchair Accessible",@"Full Bar",@"Beer & Wine only",@"Happy Hour",@"Free Wi-Fi",@"Paid Wi-fi"],
+                             @"values":@[@(NO), @(NO), @(NO), @(NO), @(NO), @(NO), @(NO), @(NO), @(NO), @(NO)]
+                             },
+                           @{
+                             @"name":@"Categories",
+                             @"type":@"switches",
+                             @"list":@[@"All",@"Active Live",@"Arts & Entertainment",@"Automotive",@"Beauty & Spas",@"Education",@"Event Planning & Services"],
+                             @"values":@[@(NO), @(NO), @(NO), @(NO), @(NO), @(NO), @(NO)]
+                             }, nil];
+        
+        
+        self.popular = [NSMutableArray arrayWithObjects: @(NO), @(NO), @(NO), @(NO), nil];
+        self.price = [NSMutableArray arrayWithObjects: @(0), nil];
+        self.distance = [NSMutableArray arrayWithObjects: @(YES), @(NO), @(NO), @(NO), @(NO), nil];
+        self.sortBy = [NSMutableArray arrayWithObjects: @(YES), @(NO), @(NO), @(NO), nil];
+        self.generalFeatures = [NSMutableArray arrayWithObjects: @(NO), @(NO), @(NO), @(NO), @(YES), @(NO), @(NO), @(NO), @(YES), @(NO), nil];
+        self.categoriesFeatures = [NSMutableArray arrayWithObjects: @(NO), @(NO), @(NO), @(NO), @(YES), @(NO), @(NO), nil];
+        
     }
     return self;
 }
@@ -99,7 +119,11 @@
 {
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     
-    [filters setObject:self. forKey:<#(id<NSCopying>)#>]
+    [filters setObject:self.popular forKey:@"popular"];
+    [filters setObject:self.distance forKey:@"distance"];
+    [filters setObject:self.sortBy forKey:@"sortBy"];
+    [filters setObject:self.generalFeatures forKey:@"generalFeaturesPopular"];
+    [filters setObject:self.categoriesFeatures forKey:@"categoriesPopular"];
     
     [self filterSettings:filters];
     [self dismissViewControllerAnimated:YES completion:^{}];
@@ -121,6 +145,18 @@
     }
 }
 
+- (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value{
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    if (indexPath.section == 1) {
+        self.popular[indexPath.row] = @(value);
+    } else if (indexPath.section == 4) {
+        self.generalFeatures[indexPath.row] = @(value);
+    } else if (indexPath.section == 5) {
+        self.categoriesFeatures[indexPath.row] = @(value);
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -139,8 +175,10 @@
             return @"Distance";
         case 3:
             return @"Sort By";
-        default:
+        case 4:
             return @"General Features";
+        default:
+            return @"Categories";
     }
 }
 
