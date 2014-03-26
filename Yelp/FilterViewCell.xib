@@ -21,12 +21,29 @@
                             <constraint firstAttribute="height" constant="31" id="dfU-Rm-8GG"/>
                         </constraints>
                     </switch>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bk-ub-Lnl">
+                        <rect key="frame" x="82" y="41" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="Ki9-LG-74r"/>
+                            <constraint firstAttribute="height" constant="21" id="cyZ-J7-gq0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="0Bk-ub-Lnl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="82" id="YIi-XZ-8JH"/>
                     <constraint firstItem="qdn-dO-ksO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="41" id="gtM-Gr-Kot"/>
                     <constraint firstAttribute="trailing" secondItem="qdn-dO-ksO" secondAttribute="trailing" constant="41" id="pWm-Kc-YGT"/>
+                    <constraint firstItem="0Bk-ub-Lnl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="41" id="pka-vk-AsK"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="onSwitch" destination="qdn-dO-ksO" id="dDw-ia-rd9"/>
+                <outlet property="switchLabel" destination="0Bk-ub-Lnl" id="MvA-gT-sps"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>

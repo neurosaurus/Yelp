@@ -10,6 +10,7 @@
 #import "SeeAllCell.h"
 #import "SegmentedPriceCell.h"
 #import "Filters.h"
+#import "FilterViewCell.h"
 
 @interface FiltersViewController ()
 
@@ -215,9 +216,32 @@
     if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"] && !self.featuresExpanded && indexPath.row == 3) {
         SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
         return cell;
+    } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Categories"] && !self.categoriesExpanded && indexPath.row == 3) {
+        SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
+        return cell;
     } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Price"] ) {
         SegmentedPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SegmentedPriceCell" forIndexPath:indexPath];
         return cell;
+    } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Most Popular"] || [self.categories[indexPath.section][@"name"]  isEqual: @"General Features"] || [self.categories[indexPath.section][@"name"]  isEqual: @"Categories"]) {
+        FilterViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FilterViewCell" forIndexPath:indexPath];
+        
+        cell.delegate = self;
+        cell.switchLabel.text = self.categories[indexPath.section][@"list"][indexPath.row];
+        
+        if([self.categories[indexPath.section][@"name"]  isEqual: @"Most Popular"]){
+            cell.onSwitch.on = [self.popular[indexPath.row] boolValue];
+            return cell;
+        } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"]) {
+            cell.onSwitch.on = [self.generalFeatures[indexPath.row] boolValue];
+            return cell;
+        } else if ([self.categories[indexPath.section][@"name"]  isEqual: @"Categories"]) {
+            cell.onSwitch.on = [self.categoriesFeatures[indexPath.row] boolValue];
+            return cell;
+        } else {
+            cell.onSwitch.on = [self.categories[indexPath.section][@"values"][indexPath.row] boolValue];
+            return cell;
+        }
+        
         
     } else {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

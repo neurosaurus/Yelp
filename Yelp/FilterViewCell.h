@@ -21,6 +21,8 @@
 
 //@property (nonatomic,strong) NSString *categoryName;
 @property (nonatomic, assign) id<FilterViewCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UISwitch *onSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *switchLabel;
 
 
 @end
