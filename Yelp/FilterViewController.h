@@ -1,5 +1,5 @@
 //
-//  FiltersViewController.h
+//  FilterViewController.h
 //  Yelp
 //
 //  Created by Tripta Gupta on 3/22/14.

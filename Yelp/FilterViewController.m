@@ -1,5 +1,5 @@
 //
-//  FiltersViewController.m
+//  FilterViewController.m
 //  Yelp
 //
 //  Created by Tripta Gupta on 3/22/14.
@@ -91,7 +91,7 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SegmentedPriceCell" bundle:nil] forCellReuseIdentifier:@"SegmentedPriceCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"SeeAllCell" bundle:nil] forCellReuseIdentifier:@"SeeAllCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"SeeAllCell" bundle:nil] forCellReuseIdentifier:@"FilterViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FilterViewCell" bundle:nil] forCellReuseIdentifier:@"FilterViewCell"];
     UINavigationBar *header = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,0,320,45)];
     
     UINavigationItem *buttonHold = [[UINavigationItem alloc]initWithTitle:@"Filter"];
@@ -211,7 +211,8 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     if ([self.categories[indexPath.section][@"name"]  isEqual: @"General Features"] && !self.featuresExpanded && indexPath.row == 3) {
         SeeAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeeAllCell" forIndexPath:indexPath];
