@@ -13,11 +13,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="541" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-dO-ksO">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdn-dO-ksO">
                         <rect key="frame" x="451" y="41" width="51" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="9IY-Ce-5HK"/>
+                            <constraint firstAttribute="height" constant="31" id="dfU-Rm-8GG"/>
+                        </constraints>
                     </switch>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="qdn-dO-ksO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="41" id="gtM-Gr-Kot"/>
+                    <constraint firstAttribute="trailing" secondItem="qdn-dO-ksO" secondAttribute="trailing" constant="41" id="pWm-Kc-YGT"/>
+                </constraints>
             </tableViewCellContentView>
         </tableViewCell>
     </objects>

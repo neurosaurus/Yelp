@@ -153,7 +153,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 - (void)onFilter:(UIBarButtonItem *)button
 {
     FiltersViewController *fvc = [[FiltersViewController alloc] init];
-    
+    fvc.delegate = self;
     UINavigationController *navigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:fvc];
     [self presentViewController:navigationController animated:YES completion: nil];

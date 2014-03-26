@@ -13,9 +13,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O9Z-bh-gCj">
+                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O9Z-bh-gCj">
                         <rect key="frame" x="0.0" y="8" width="320" height="29"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="I5W-uS-BMK"/>
+                            <constraint firstAttribute="width" constant="320" id="UhM-lx-sJF"/>
+                        </constraints>
                         <segments>
                             <segment title="$"/>
                             <segment title="$$"/>
@@ -24,6 +28,10 @@
                         </segments>
                     </segmentedControl>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="O9Z-bh-gCj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="aQJ-Ax-aqR"/>
+                    <constraint firstItem="O9Z-bh-gCj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rpW-pV-CKV"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="segments" destination="O9Z-bh-gCj" id="4TV-cC-wBg"/>

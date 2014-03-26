@@ -18,6 +18,12 @@
 @property (nonatomic, assign) BOOL featuresExpanded;
 @property (nonatomic, assign) BOOL sortByExpanded;
 @property (nonatomic, assign) BOOL distanceExpanded;
+@property (nonatomic, assign) BOOL categoriesExpanded;
+@property (nonatomic, strong) NSMutableArray *price;
+@property (nonatomic, strong) NSMutableArray *popular;
+@property (nonatomic, strong) NSMutableArray *distance;
+@property (nonatomic, strong) NSMutableArray *sortBy;
+
 
 @end
 
@@ -93,6 +99,8 @@
 {
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     
+    [filters setObject:self. forKey:<#(id<NSCopying>)#>]
+    
     [self filterSettings:filters];
     [self dismissViewControllerAnimated:YES completion:^{}];
     return;
@@ -112,12 +120,6 @@
         [self.delegate filterSettings:data];
     }
 }
-
-//- (void)sender:(FilterViewCell *)sender didChangeValue:(BOOL)value
-//{
-//    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-//
-//}
 
 - (void)didReceiveMemoryWarning
 {
