@@ -29,6 +29,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 @property (nonatomic, strong) UIView *searchBarView;
 @property (strong, nonatomic) NSString *searchTerm;
 
+
 @end
 
 @implementation ResultsViewController
@@ -38,38 +39,10 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-//        self.title = @"Yelp";
-//        self.searchTerm = @"Pho";
-//        _filters = [[Filters alloc] init];
-//        self.listingResults = [[Businesses alloc] init];
-//        self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
-//
-//        UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
-//                                                                         style:UIBarButtonItemStylePlain
-//                                                                        target:self
-//                                                                        action:@selector(onFilter:)];
-//        
-//        self.navigationItem.rightBarButtonItem = filterButton;
-//        
-//        UISearchBar *searchBar = [[UISearchBar alloc] init];
-//        searchBar.delegate = self;
-//        searchBar.text = self.searchTerm;
-//        self.navigationItem.titleView = searchBar;
+        
     }
     return self;
 }
-
-//- (void)loadYelp
-//{
-//    NSDictionary *parameters = [_filters getParametersTerm:self.searchTerm];
-//    
-//    [self.client searchWithParameters:parameters success:^(AFHTTPRequestOperation *operation, id response) {
-//        self.listingResults.data = response[@"businesses"];
-//        [self.tableView reloadData];
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"error: %@", [error description]);
-//    }];
-//}
 
 - (void)viewDidLoad
 {
@@ -162,7 +135,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     NSString *searchText = searchBar.text;
     
     [self.client searchWithTerm:searchText success:^(AFHTTPRequestOperation *operation, id response) {
-        // Passing API results to the YelpListing model for creation
         self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
         [self.tableView reloadData];
         
@@ -178,9 +150,11 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     NSLog(@"%@", data);
     if (data[@"popular"][2]) {
-        [dictionary setObject:data[@"popular"][2] forKey:@"deals_filter"];
+//        [dictionary setObject:data[@"popular"][2] forKey:@"deals_filter"];
+        [dictionary setObject:@(YES) forKey:@"deals_filter"];
+
     }
-        
+    
 //    if (data[@"distance"][0]) {
 //        [dictionary setObject:@"100" forKey:@"radius_filter"];
 //    } else if (data[@"distance"][1]) {
