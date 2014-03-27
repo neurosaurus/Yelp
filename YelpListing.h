@@ -23,4 +23,6 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
++ (NSArray *)yelpListingsWithArray:(NSArray *)array;
+
 @end

@@ -36,4 +36,10 @@
     return [self GET:@"search" parameters:parameters success:success failure:failure];
 }
 
+- (AFHTTPRequestOperation *)searchWithDictionary:(NSMutableDictionary *)dictionary success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {    
+    
+    return [self GET:@"search" parameters:dictionary success:success failure:failure];
+    
+}
+
 @end

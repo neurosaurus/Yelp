@@ -10,7 +10,7 @@
 #import "FilterViewCell.h"
 #import "SegmentedPriceCell.h"
 
-@class FilterViewController;
+//@class FilterViewController;
 
 @protocol FilterViewDelegate <NSObject>
 

@@ -127,8 +127,10 @@
     [filters setObject:self.sortBy forKey:@"sortBy"];
     [filters setObject:self.generalFeatures forKey:@"generalFeaturesPopular"];
     [filters setObject:self.categoriesFeatures forKey:@"categoriesPopular"];
-    
+
+    NSLog(@"press save button");
     [self filterSettings:filters];
+    
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 

@@ -40,23 +40,23 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.title = @"Yelp";
-        self.searchTerm = @"Pho";
-        _filters = [[Filters alloc] init];
-        self.listingResults = [[Businesses alloc] init];
-        self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
-
-        UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
-                                                                         style:UIBarButtonItemStylePlain
-                                                                        target:self
-                                                                        action:@selector(onFilter:)];
-        
-        self.navigationItem.rightBarButtonItem = filterButton;
-        
-        UISearchBar *searchBar = [[UISearchBar alloc] init];
-        searchBar.delegate = self;
-        searchBar.text = self.searchTerm;
-        self.navigationItem.titleView = searchBar;
+//        self.title = @"Yelp";
+//        self.searchTerm = @"Pho";
+//        _filters = [[Filters alloc] init];
+//        self.listingResults = [[Businesses alloc] init];
+//        self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+//
+//        UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter"
+//                                                                         style:UIBarButtonItemStylePlain
+//                                                                        target:self
+//                                                                        action:@selector(onFilter:)];
+//        
+//        self.navigationItem.rightBarButtonItem = filterButton;
+//        
+//        UISearchBar *searchBar = [[UISearchBar alloc] init];
+//        searchBar.delegate = self;
+//        searchBar.text = self.searchTerm;
+//        self.navigationItem.titleView = searchBar;
     }
     return self;
 }
@@ -82,7 +82,36 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     
-    [self loadYelp];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilter)];
+    
+    UINavigationBar *headerView = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,20,320,44)];
+    
+    UINavigationItem *buttonCarrier = [[UINavigationItem alloc]initWithTitle:@"whatever"];
+
+    
+    UIBarButtonItem *barBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleDone target:self action:@selector(filter)];
+    [buttonCarrier setLeftBarButtonItem:barBackButton];
+    NSArray *barItemArray = [[NSArray alloc]initWithObjects:buttonCarrier,nil];
+    [headerView setItems:barItemArray];
+    [self.tableView setTableHeaderView:headerView];
+    
+    [headerView setBarTintColor:[UIColor redColor]];
+    [headerView setTintColor:[UIColor whiteColor]];
+    self.searchBar = [[UISearchBar alloc] init];
+    self.searchBar.delegate = self;
+    headerView.topItem.titleView = self.searchBar;
+    
+    self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
+    
+    // Pulling results from Yelp API.
+    [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
+        // Passing API results to the YelpListing model for creation
+        self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", [error description]);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,7 +124,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.yelpListings.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +138,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     YelpListing *listing = self.yelpListings[indexPath.row];
     listing.index    = [NSString stringWithFormat: @"%i", indexPath.row];
     
-    cell.yelpListing = [_listingResults get:indexPath.row];
+    cell.yelpListing = listing;
     
     return cell;
 }
@@ -132,18 +161,31 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self.searchBar resignFirstResponder];
-    self.searchTerm = searchBar.text;
-    [self loadYelp];
+    [searchBar resignFirstResponder];
+    NSString *searchText = searchBar.text;
+    
+    
+    [self.client searchWithTerm:searchText success:^(AFHTTPRequestOperation *operation, id response) {
+        // Passing API results to the YelpListing model for creation
+        self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
+        [self.tableView reloadData];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", [error description]);
+    }];
 
 }
 
 - (void)filterSettings:(NSMutableDictionary *)data
 {
+    NSLog(@"beings passed from filtersview");
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    
-    if (data[@"popular"][0])
-    {
+    NSLog(@"%@", data);
+    if (data[@"popular"][2]) {
+        [dictionary setObject:data[@"popular"][2] forKey:@"deals_filter"];
+    }
+        
+    if (data[@"distance"][0]) {
         [dictionary setObject:@"100" forKey:@"radius_filter"];
     } else if (data[@"distance"][1]) {
         [dictionary setObject:@"500" forKey:@"radius_filter"];
@@ -153,17 +195,32 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
         [dictionary setObject:@"20000" forKey:@"radius_filter"];
     }
     
-    [self loadYelp];
+    [self.client searchWithDictionary:dictionary success:^(AFHTTPRequestOperation *operation, id response) {
+        
+        self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"error: %@", [error description]);
+    }];
 }
 
 #pragma mark - Navigation Bar
 
-- (void)onFilter:(UIBarButtonItem *)button
+- (void)onFilter
 {
-    FilterViewController *fvc = [[FilterViewController alloc] init];
-    fvc.delegate = self;
-    UINavigationController *navigationController = [[UINavigationController alloc]
-                                                    initWithRootViewController:fvc];
-    [self presentViewController:navigationController animated:YES completion: nil];
+    [self.navigationController pushViewController:[[FilterViewController alloc] init] animated:YES];
+
+}
+
+- (void)filter {
+    [self.searchBar resignFirstResponder];
+    FilterViewController *filterViewController = [[FilterViewController alloc] initWithNibName:NSStringFromClass([FilterViewController class]) bundle:nil];
+    filterViewController.delegate = self;
+    [self presentViewController:filterViewController animated:YES completion:^{}];
+    return;
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
 }
 @end
