@@ -9,7 +9,6 @@
 #import "FilterViewController.h"
 #import "SeeAllCell.h"
 #import "SegmentedPriceCell.h"
-#import "Filters.h"
 #import "FilterViewCell.h"
 
 @interface FilterViewController () <UITableViewDataSource, UITableViewDelegate>

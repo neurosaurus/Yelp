@@ -10,8 +10,6 @@
 #import "FilterViewController.h"
 #import "YelpClient.h"
 #import "YelpListingCell.h"
-#import "Filters.h"
-#import "Businesses.h"
 #import "YelpListing.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
@@ -144,7 +142,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YelpListing *listing = [_listingResults get:indexPath.row];
+    YelpListing *listing = self.yelpListings[indexPath.row];
     
     NSString *text = listing.title;
     UIFont *fontText = [UIFont boldSystemFontOfSize:15.0];
