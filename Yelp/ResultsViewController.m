@@ -103,9 +103,8 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     
     self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
     
-    // Pulling results from Yelp API.
-    [self.client searchWithTerm:@"Thai" success:^(AFHTTPRequestOperation *operation, id response) {
-        // Passing API results to the YelpListing model for creation
+    [self.client searchWithTerm:@"Pho" success:^(AFHTTPRequestOperation *operation, id response) {
+
         self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
         [self.tableView reloadData];
         
@@ -163,7 +162,6 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
 {
     [searchBar resignFirstResponder];
     NSString *searchText = searchBar.text;
-    
     
     [self.client searchWithTerm:searchText success:^(AFHTTPRequestOperation *operation, id response) {
         // Passing API results to the YelpListing model for creation
