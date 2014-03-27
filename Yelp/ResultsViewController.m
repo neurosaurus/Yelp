@@ -61,17 +61,17 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     return self;
 }
 
-- (void)loadYelp
-{
-    NSDictionary *parameters = [_filters getParametersTerm:self.searchTerm];
-    
-    [self.client searchWithParameters:parameters success:^(AFHTTPRequestOperation *operation, id response) {
-        self.listingResults.data = response[@"businesses"];
-        [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"error: %@", [error description]);
-    }];
-}
+//- (void)loadYelp
+//{
+//    NSDictionary *parameters = [_filters getParametersTerm:self.searchTerm];
+//    
+//    [self.client searchWithParameters:parameters success:^(AFHTTPRequestOperation *operation, id response) {
+//        self.listingResults.data = response[@"businesses"];
+//        [self.tableView reloadData];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"error: %@", [error description]);
+//    }];
+//}
 
 - (void)viewDidLoad
 {
@@ -185,18 +185,17 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
         [dictionary setObject:data[@"popular"][2] forKey:@"deals_filter"];
     }
         
-    if (data[@"distance"][0]) {
-        [dictionary setObject:@"100" forKey:@"radius_filter"];
-    } else if (data[@"distance"][1]) {
-        [dictionary setObject:@"500" forKey:@"radius_filter"];
-    } else if (data[@"distance"][2]) {
-        [dictionary setObject:@"1000" forKey:@"radius_filter"];
-    } else if (data[@"distance"][3]) {
-        [dictionary setObject:@"20000" forKey:@"radius_filter"];
-    }
+//    if (data[@"distance"][0]) {
+//        [dictionary setObject:@"100" forKey:@"radius_filter"];
+//    } else if (data[@"distance"][1]) {
+//        [dictionary setObject:@"500" forKey:@"radius_filter"];
+//    } else if (data[@"distance"][2]) {
+//        [dictionary setObject:@"1000" forKey:@"radius_filter"];
+//    } else if (data[@"distance"][3]) {
+//        [dictionary setObject:@"20000" forKey:@"radius_filter"];
+//    }
     
     [self.client searchWithDictionary:dictionary success:^(AFHTTPRequestOperation *operation, id response) {
-        
         self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
