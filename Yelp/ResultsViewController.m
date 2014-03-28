@@ -18,6 +18,9 @@ NSString * const kYelpConsumerKey = @"vxKwwcR_NMQ7WaEiQBK_CA";
 NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
 NSString * const kYelpToken = @"uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV";
 NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
+NSInteger  const CELL_HEIGHT_EXTRA = 80;
+
+
 
 @interface ResultsViewController ()
 
@@ -53,7 +56,7 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilter)];
+    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"filter" style:UIBarButtonItemStylePlain target:self action:@selector(onFilter)];
     
     UINavigationBar *headerView = [[UINavigationBar alloc] initWithFrame:CGRectMake(0,20,320,44)];
     
@@ -118,13 +121,15 @@ NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
     YelpListing *listing = self.yelpListings[indexPath.row];
     
     NSString *text = listing.title;
-    UIFont *fontText = [UIFont boldSystemFontOfSize:15.0];
+    UIFont *fontText = [UIFont boldSystemFontOfSize:17.0];
     CGRect rect = [text boundingRectWithSize:CGSizeMake(165, CGFLOAT_MAX)
                                      options:NSStringDrawingUsesLineFragmentOrigin
                                   attributes:@{NSFontAttributeName:fontText}
                                      context:nil];
-    CGFloat heightOffset = 90;
-    return rect.size.height + heightOffset;
+    
+    return rect.size.height + CELL_HEIGHT_EXTRA;
+    //CGFloat heightOffset = 90;
+    //return rect.size.height + heightOffset;
 }
 
 #pragma mark Search

@@ -9,12 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FilterViewController.h"
 
-@class Businesses;
-@class Filters;
-
 @interface ResultsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, FilterViewDelegate>
 
-@property (nonatomic, strong) Businesses *listingResults;
-@property (nonatomic, strong) Filters *filters;
 
 @end
