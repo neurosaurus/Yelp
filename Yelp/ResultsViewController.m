@@ -18,9 +18,6 @@ NSString * const kYelpConsumerKey = @"vxKwwcR_NMQ7WaEiQBK_CA";
 NSString * const kYelpConsumerSecret = @"33QCvh5bIF5jIHR5klQr7RtBDhQ";
 NSString * const kYelpToken = @"uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV";
 NSString * const kYelpTokenSecret = @"mqtKIxMIR4iBtBPZCmCLEb-Dz3Y";
-NSInteger  const CELL_HEIGHT_EXTRA = 80;
-
-
 
 @interface ResultsViewController ()
 
@@ -77,7 +74,7 @@ NSInteger  const CELL_HEIGHT_EXTRA = 80;
     
     self.client = [[YelpClient alloc] initWithConsumerKey:kYelpConsumerKey consumerSecret:kYelpConsumerSecret accessToken:kYelpToken accessSecret:kYelpTokenSecret];
     
-    [self.client searchWithTerm:@"Pho" success:^(AFHTTPRequestOperation *operation, id response) {
+    [self.client searchWithTerm:@"korean" success:^(AFHTTPRequestOperation *operation, id response) {
 
         self.yelpListings = [YelpListing yelpListingsWithArray:response[@"businesses"]];
         [self.tableView reloadData];
@@ -127,9 +124,8 @@ NSInteger  const CELL_HEIGHT_EXTRA = 80;
                                   attributes:@{NSFontAttributeName:fontText}
                                      context:nil];
     
-    return rect.size.height + CELL_HEIGHT_EXTRA;
-    //CGFloat heightOffset = 90;
-    //return rect.size.height + heightOffset;
+    CGFloat heightOffset = 90;
+    return rect.size.height + heightOffset;
 }
 
 #pragma mark Search
