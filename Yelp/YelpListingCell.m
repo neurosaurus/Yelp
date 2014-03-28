@@ -36,7 +36,8 @@
 {
     _yelpListing = yelpListing;
     
-    self.restaurantTitle.text   = [NSString stringWithFormat:@"%@, %@", yelpListing.index, yelpListing.title];
+    self.restaurantTitle.text   = [NSString stringWithFormat:@"%@.%@", yelpListing.index, yelpListing.title];
+    NSLog(@"Title %@", yelpListing.title);
     self.addressLabel.text      = [NSString stringWithFormat:@"%@, %@", yelpListing.address, yelpListing.neighborhood];
     self.reviewCount.text       = [NSString stringWithFormat: @"%@ reviews", yelpListing.reviewCount];
     self.categoryLabel.text     = [NSString stringWithFormat: @"%@", yelpListing.categories];
