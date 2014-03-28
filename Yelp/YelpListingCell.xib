@@ -17,8 +17,8 @@
                         <rect key="frame" x="9" y="14" width="92" height="99"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="90" id="2Uq-AR-TuQ"/>
                             <constraint firstAttribute="width" constant="91" id="TgD-cm-uPI"/>
-                            <constraint firstAttribute="height" constant="99" id="iPS-PM-XLN"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Restaurant Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="241" translatesAutoresizingMaskIntoConstraints="NO" id="8gI-7G-v5a">
@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Address, Neighborhood" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Sp-Ti-IhO">
-                        <rect key="frame" x="109" y="72" width="198" height="21"/>
+                        <rect key="frame" x="109" y="70" width="198" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="198" id="Dsu-yG-TSB"/>
@@ -40,7 +40,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Food Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghQ-FG-VZl">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Food Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghQ-FG-VZl">
                         <rect key="frame" x="109" y="92" width="132" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
@@ -51,7 +51,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="#ofReviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njE-AE-Aye">
-                        <rect key="frame" x="206" y="43" width="107" height="21"/>
+                        <rect key="frame" x="206" y="40" width="107" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="107" id="efm-4Q-gqB"/>
@@ -70,9 +70,19 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="AqL-A0-nXW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="Shx-dg-4a3"/>
-                    <constraint firstItem="AqL-A0-nXW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="ghD-1J-6Zj"/>
-                    <constraint firstItem="TBg-3v-kMz" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="8" id="wYd-6S-L1r"/>
+                    <constraint firstItem="ghQ-FG-VZl" firstAttribute="top" secondItem="9Sp-Ti-IhO" secondAttribute="bottom" constant="3" id="1rm-bj-ln4"/>
+                    <constraint firstItem="8gI-7G-v5a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="5cM-ua-UMP"/>
+                    <constraint firstItem="9Sp-Ti-IhO" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="5" id="8ZJ-51-r7K"/>
+                    <constraint firstItem="9Sp-Ti-IhO" firstAttribute="top" secondItem="TBg-3v-kMz" secondAttribute="bottom" constant="3" id="MDg-I3-n4F"/>
+                    <constraint firstItem="8gI-7G-v5a" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="10" id="RUL-hR-24D"/>
+                    <constraint firstItem="AqL-A0-nXW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="cdO-gE-jKT"/>
+                    <constraint firstItem="ghQ-FG-VZl" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="5" id="gHJ-nC-UVM"/>
+                    <constraint firstItem="TBg-3v-kMz" firstAttribute="top" secondItem="8gI-7G-v5a" secondAttribute="bottom" constant="3" id="iMh-D8-HDY"/>
+                    <constraint firstItem="njE-AE-Aye" firstAttribute="top" secondItem="8gI-7G-v5a" secondAttribute="bottom" constant="3" id="imU-bC-NY6"/>
+                    <constraint firstAttribute="bottom" secondItem="ghQ-FG-VZl" secondAttribute="bottom" constant="10" id="o5e-rz-Hr4"/>
+                    <constraint firstItem="AqL-A0-nXW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="wHr-hp-bVo"/>
+                    <constraint firstItem="TBg-3v-kMz" firstAttribute="leading" secondItem="AqL-A0-nXW" secondAttribute="trailing" constant="5" id="ymS-1f-vpI"/>
+                    <constraint firstItem="njE-AE-Aye" firstAttribute="leading" secondItem="TBg-3v-kMz" secondAttribute="trailing" constant="3" id="ywQ-xq-2uY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
